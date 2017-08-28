@@ -13,14 +13,24 @@
 #include <string>
 #include <vector>
 
+/**
+ * 预先声明类uint256,建文件uint256.h 
+ * 友元函数：ArithToUint256(const arith_uint256&) 和 UintToArith256(const uint256&) 
+ * 这2个函数的实现需要用到
+ */
 class uint256;
 
+/**
+ * 封装错误处理类，直接封装标准库中的std::runtime_error 
+ */
 class uint_error : public std::runtime_error {
 public:
     explicit uint_error(const std::string& str) : std::runtime_error(str) {}
 };
 
-/** Template base class for unsigned big integers. */
+/**
+ * 无符号大整数的模板类的基类定义 
+ */
 template<unsigned int BITS>
 class base_uint
 {
