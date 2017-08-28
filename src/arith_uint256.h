@@ -29,7 +29,9 @@ public:
 };
 
 /**
- * 无符号大整数的模板类的基类定义 
+ * 无符号大整数的模板类的基类声明 
+ * 类base_uint 主要定义了大整数的算术运算操作"+，-，*, /, <<, >>, ~, !..."等操作
+ * 此类外部依赖比较少，可以去掉uint256的一类，作为一个通用的大整数的实现单独使用(TODO)
  */
 template<unsigned int BITS>
 class base_uint
@@ -265,7 +267,9 @@ public:
     }
 };
 
-/** 256-bit unsigned big integer. */
+/**
+ * 256位无符号的大整数，继承自模板类base_uint
+ */
 class arith_uint256 : public base_uint<256> {
 public:
     arith_uint256() {}
@@ -295,7 +299,9 @@ public:
      */
     arith_uint256& SetCompact(uint32_t nCompact, bool *pfNegative = nullptr, bool *pfOverflow = nullptr);
     uint32_t GetCompact(bool fNegative = false) const;
-
+    /**
+     * 友元函数 (TODO)
+     */
     friend uint256 ArithToUint256(const arith_uint256 &);
     friend arith_uint256 UintToArith256(const uint256 &);
 };
